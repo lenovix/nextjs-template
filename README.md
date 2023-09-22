@@ -18,6 +18,23 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## WebView
+
+The WebView feature is in active development. Workarounds:
+
+- Use ResizeObserver to detect changes in the height of the object element, but please note that it currently only works in Firefox due to a known bug (https://bug.com).
+
+- Use fetch to check the availability of the site, but be aware that it may not work on sites with the 'X-Frame-Options' header.
+
+Here are some sites that work and some that do not work.
+
+| work                                                          | not work             |
+|---------------------------------------------------------------|----------------------|
+| https://github.io                                             | https://google.com   |
+| https://estradax.github.io                                    | https://mixpanel.com |
+| https://www.youtube.com/embed/lJIrF4YjHfQ?si=Wth2R4pS2NHzIjDO |                      |
+| https://twitter.com (display error message)                   |                      |
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
