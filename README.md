@@ -22,7 +22,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 The WebView feature is in active development. Workarounds:
 
-- Use ResizeObserver to detect changes in the height of the object element, but please note that it currently only works in Firefox due to a known bug (https://bug.com).
+- Use ResizeObserver to detect changes in the height of the object element, but please note that it currently only works in Firefox due to a known bug [https://bugzilla.mozilla.org/show_bug.cgi?id=1689099](https://bugzilla.mozilla.org/show_bug.cgi?id=1689099).
 
 - Use fetch to check the availability of the site, but be aware that it may not work on sites with the 'X-Frame-Options' header.
 
