@@ -2,7 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 
-import './styles/style.css'
+import "./styles/style.css";
+
+import mixpanel from "../config/mixpanel";
 
 const FetchWebsite = ({ url }: { url: string }) => {
   const [hasError, setHasError] = useState(false);
@@ -10,14 +12,25 @@ const FetchWebsite = ({ url }: { url: string }) => {
   useEffect(() => {
     const abortController = new AbortController();
 
+    /**
+     * Track website fetch event
+     * @param url - URL of the website
+     */
+    const trackWebsiteFetch = (url: string) => {
+      mixpanel.track("Website Fetched", { url });
+    };
+
     const getSiteAvailability = async () => {
       try {
-	await fetch(url, { mode: 'no-cors', signal: abortController.signal });
-	setHasError(false);
+        await fetch(url, { mode: "no-cors", signal: abortController.signal });
+        setHasError(false);
+
+        // Track website fetch event
+        trackWebsiteFetch(url);
       } catch (err) {
-	setHasError(true);
+        setHasError(true);
       }
-    }
+    };
 
     getSiteAvailability();
 
@@ -31,14 +44,14 @@ const FetchWebsite = ({ url }: { url: string }) => {
           An error occurred while loading the website.
         </div>
       ) : (
-	<iframe
-	  src={url}
-	  style={{
-	    width: "100%",
-	    height: "600px",
-	    border: "none"
-	  }}
-	  ></iframe>
+        <iframe
+          src={url}
+          style={{
+            width: "100%",
+            height: "600px",
+            border: "none",
+          }}
+        ></iframe>
       )}
     </div>
   );
