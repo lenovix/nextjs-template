@@ -6,6 +6,8 @@ import "./styles/style.css";
 
 import mixpanel from "../config/mixpanel";
 
+import CookieBanner from "./components/CookiesBanner";
+
 const FetchWebsite = ({ url }: { url: string }) => {
   const [hasError, setHasError] = useState(false);
 
@@ -61,18 +63,21 @@ const Home = () => {
   const [url, setUrl] = useState("");
 
   return (
-    <div>
-      <h1 className="title">Webpage Viewer</h1>
+    <>
       <div>
-        <input
-          type="text"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          placeholder="Enter URL"
-        />
+        <h1 className="title">Webpage Viewer</h1>
+        <div>
+          <input
+            type="text"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            placeholder="Enter URL"
+          />
+        </div>
+        <div>{url && <FetchWebsite url={url} />}</div>
       </div>
-      <div>{url && <FetchWebsite url={url} />}</div>
-    </div>
+      <CookieBanner />
+    </>
   );
 };
 
