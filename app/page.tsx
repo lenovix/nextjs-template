@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import "./styles/style.css";
+import './styles/style.css';
 
-import mixpanel from "../config/mixpanel";
+import mixpanel from '../config/mixpanel';
 
-import CookieBanner from "./components/CookiesBanner";
+import CookieBanner from './components/CookiesBanner';
 
 const FetchWebsite = ({ url }: { url: string }) => {
   const [hasError, setHasError] = useState(false);
@@ -19,12 +19,12 @@ const FetchWebsite = ({ url }: { url: string }) => {
      * @param url - URL of the website
      */
     const trackWebsiteFetch = (url: string) => {
-      mixpanel.track("Website Fetched", { url });
+      mixpanel.track('Website Fetched', { url });
     };
 
     const getSiteAvailability = async () => {
       try {
-        await fetch(url, { mode: "no-cors", signal: abortController.signal });
+        await fetch(url, { mode: 'no-cors', signal: abortController.signal });
         setHasError(false);
 
         // Track website fetch event
@@ -49,9 +49,9 @@ const FetchWebsite = ({ url }: { url: string }) => {
         <iframe
           src={url}
           style={{
-            width: "100%",
-            height: "600px",
-            border: "none",
+            width: '100%',
+            height: '600px',
+            border: 'none',
           }}
         ></iframe>
       )}
@@ -60,7 +60,7 @@ const FetchWebsite = ({ url }: { url: string }) => {
 };
 
 const Home = () => {
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState('');
 
   return (
     <>
